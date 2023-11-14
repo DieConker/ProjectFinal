@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author diego
  */
 public class Usuario implements Serializable {
-    public static final char tipoper = 'P';
+    public static final char tipoper = 'B';
     public static int secuenciador=0;
     private int id;
     private String usuario;
@@ -89,7 +89,7 @@ public class Usuario implements Serializable {
     public String toString() {
         return "Usuario{" + "id=" + id + ", usuario=" + usuario +
                 ", password=" + password + ", tipo=" + tipo + ", carpeta=" + 
-                carpeta + ", nameFile=" + nameFile + "}\n";
+                carpeta + ", nombreFoto=" + nameFile + "}\n";
     }
     
 

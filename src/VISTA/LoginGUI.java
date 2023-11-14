@@ -168,6 +168,7 @@ public class LoginGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         String user = areaUser.getText();
         String pass = areaClave.getText();
+        u = null;
         if (Usuario.tipoper=='P'){
             Persistencia per = new Persistencia();
             per.abrirArchivoEntrada();
@@ -181,10 +182,23 @@ public class LoginGUI extends javax.swing.JDialog {
                     return;
                 }
             } catch (Exception e) {
-
+                System.out.println("error inesperado persistencia!" + e);
             }
         }else{
             //La validacion se hace contra la base de datos
+            UsuarioDAO udao = new UsuarioDAO();
+            u = udao.obtenerUsuarioPorUser(user);
+            String passenc="";
+            try {
+                passenc=Seguridad.encriptar(pass);
+                if(!user.equals(u.getUsuario()) ||
+                        !passenc.equals(u.getPassword())){
+                    mostrarMensaje("Password Invalido. No puede continuar");
+                    return;
+                }
+            } catch (Exception e) {
+                System.out.println("error inesperado base de datos!" + e);
+            }
         }
         cargarFoto(u.getCarpeta(),u.getNameFile());
         

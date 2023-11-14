@@ -22,17 +22,41 @@ public class BasedeDatos {
     public void ejecutarQuery (String query){
         try{
             resultados = comando.executeQuery(query);
-            while(resultados.next()){
-                System.out.println(resultados.getInt("ID"));
-                System.out.println(resultados.getString("USUARIO"));
-                System.out.println(resultados.getString("PASSWORD"));
-                System.out.println(resultados.getString("CARPETA"));
-                System.out.println(resultados.getString("nameFile"));
-                System.out.println(resultados.getString("TIPO"));
-            }
         } catch (Exception e) {
             System.out.println("error al ejecutar query\n" + e);
         }
+    }
+    
+    public void ejecutarUpdate (String query){
+        try{
+            comando.executeQuery(query);
+        } catch (Exception e) {
+            System.out.println("error al ejecutar update\n" + e);
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public Statement getComando() {
+        return comando;
+    }
+
+    public void setComando(Statement comando) {
+        this.comando = comando;
+    }
+
+    public ResultSet getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(ResultSet resultados) {
+        this.resultados = resultados;
     }
     
     public static void main (String[] args){
