@@ -199,8 +199,20 @@ public class LoginGUI extends javax.swing.JDialog {
             } catch (Exception e) {
                 System.out.println("error inesperado base de datos!" + e);
             }
+            cargarFoto(u.getCarpeta(),u.getNameFile());
+             if (user.equals(u.getUsuario()) && passenc.equals(u.getPassword())) {
+        // Cerrar la ventana actual
+        this.dispose();
+
+        // Abrir la nueva ventana (MainApp)
+        MainApp mainAppDialog = new MainApp(null, true);  // Asegúrate de que tu constructor de MainApp acepte los parámetros necesarios
+        mainAppDialog.setVisible(true);
+        } else {
+            mostrarMensaje("Password Inválido. No puede continuar");
+            return;
         }
-        cargarFoto(u.getCarpeta(),u.getNameFile());
+        }
+        
         
     }//GEN-LAST:event_btnLoginMouseClicked
     
