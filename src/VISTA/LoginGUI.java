@@ -199,7 +199,6 @@ public class LoginGUI extends javax.swing.JDialog {
             } catch (Exception e) {
                 System.out.println("error inesperado base de datos!" + e);
             }
-            cargarFoto(u.getCarpeta(),u.getNameFile());
              if (user.equals(u.getUsuario()) && passenc.equals(u.getPassword())) {
         // Cerrar la ventana actual
         this.dispose();
@@ -212,7 +211,7 @@ public class LoginGUI extends javax.swing.JDialog {
             return;
         }
         }
-        
+        //cargarFoto(u.getCarpeta(),u.getNameFile());
         
     }//GEN-LAST:event_btnLoginMouseClicked
     
