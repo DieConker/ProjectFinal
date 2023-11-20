@@ -8,6 +8,7 @@ package VISTA;
 import CONTROL.*;
 import MODELO.*;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class LoginGUI extends javax.swing.JDialog {
     public LoginGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -71,7 +73,7 @@ public class LoginGUI extends javax.swing.JDialog {
         });
         bg.add(areaUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, 30));
 
-        areaClave.setText("jPasswordField1");
+        areaClave.setText("The99Diego");
         bg.add(areaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 200, 30));
 
         btnLogin.setBackground(new java.awt.Color(123, 128, 207));
@@ -127,20 +129,20 @@ public class LoginGUI extends javax.swing.JDialog {
         bgImage.setLayout(bgImageLayout);
         bgImageLayout.setHorizontalGroup(
             bgImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(profileFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(profileFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
         );
         bgImageLayout.setVerticalGroup(
             bgImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(profileFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+            .addComponent(profileFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
 
-        bg.add(bgImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 100, 139));
+        bg.add(bgImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 135, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +202,13 @@ public class LoginGUI extends javax.swing.JDialog {
                 System.out.println("error inesperado base de datos!" + e);
             }
              if (user.equals(u.getUsuario()) && passenc.equals(u.getPassword())) {
+        MainApp.logid = u.getId();
+        MainApp.logname = u.getUsuario();
         // Cerrar la ventana actual
+        cargarFoto(u.getCarpeta(),u.getNameFile());
+        JOptionPane.showMessageDialog(null, "Bienvenido " + user );
         this.dispose();
-
+        
         // Abrir la nueva ventana (MainApp)
         MainApp mainAppDialog = new MainApp(null, true);  // Asegúrate de que tu constructor de MainApp acepte los parámetros necesarios
         mainAppDialog.setVisible(true);

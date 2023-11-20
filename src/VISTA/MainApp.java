@@ -16,9 +16,13 @@ public class MainApp extends javax.swing.JDialog {
     /**
      * Creates new form MainApp
      */
+    public static int logid;
+    public static String logname;
     public MainApp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
+        userName.setText(logname);
     }
 
     /**
@@ -47,6 +51,8 @@ public class MainApp extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         bgFirma = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        userText = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,6 +86,9 @@ public class MainApp extends javax.swing.JDialog {
         btnHouse.setBackground(new java.awt.Color(159, 168, 218));
         btnHouse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHouse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHouseMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnHouseMouseEntered(evt);
             }
@@ -247,6 +256,10 @@ public class MainApp extends javax.swing.JDialog {
 
         bg.add(bgPanLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 380));
 
+        userText.setText("Usuario:");
+        bg.add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, 20));
+        bg.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 70, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,6 +326,12 @@ public class MainApp extends javax.swing.JDialog {
         btnGestion.setBackground(new Color(159,168,218));
     }//GEN-LAST:event_btnGestionMouseExited
 
+    private void btnHouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHouseMouseClicked
+        // TODO add your handling code here:
+        FotosFamGUI fotosgui = new FotosFamGUI(null, true);
+        fotosgui.setVisible(true);
+    }//GEN-LAST:event_btnHouseMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -373,5 +392,7 @@ public class MainApp extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel menu;
+    private javax.swing.JLabel userName;
+    private javax.swing.JLabel userText;
     // End of variables declaration//GEN-END:variables
 }

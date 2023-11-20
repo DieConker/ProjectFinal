@@ -14,7 +14,8 @@ public class UsuarioDAO {
     
     private static final String UPDATE_USUARIO = 
             "UPDATE usuarios SET usuario = ?, password = ?, tipo = ?, carpeta = ?, nameFile= ? WHERE id = ?";
-    private static final String DELETE_USUARIO = "DELETE_FROM usuarios WHERE id = ?";
+    private static final String DELETE_USUARIO = "DELETE FROM usuarios WHERE id = ?";
+    private static final String DELETE_USUARIOU = "DELETE FROM usuarios WHERE usuario = ?";
     
     public Usuario obtenerUsuarioPorId (int id) {
         BasedeDatos bd = new BasedeDatos ();
@@ -101,6 +102,7 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getTipo()+"");
             stmt.setString(4, usuario.getCarpeta());
             stmt.setString(5, usuario.getNameFile());
+            stmt.setInt(6,usuario.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -115,6 +117,20 @@ public class UsuarioDAO {
         try (
                 PreparedStatement stmt = conn.prepareStatement(DELETE_USUARIO)) {
             stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;                
+    }
+    
+    public boolean eliminarUsuarioxUser(String user){
+        BasedeDatos bd = new BasedeDatos();
+        Connection conn = bd.getConnection();
+        
+        try (
+                PreparedStatement stmt = conn.prepareStatement(DELETE_USUARIOU)) {
+            stmt.setString(1, user);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
